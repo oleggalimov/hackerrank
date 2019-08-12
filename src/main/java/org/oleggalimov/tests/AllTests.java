@@ -2,6 +2,7 @@ package main.java.org.oleggalimov.tests;
 
 
 import main.java.org.oleggalimov.tasks.JavaCurrencyFormatter;
+import main.java.org.oleggalimov.tasks.PatternSyntaxChecker;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,6 +38,21 @@ public class AllTests {
                 byteArrayOutputStream.toString()
         );
     }
+    @Test
+    public void PatternSyntaxChecker() throws Exception {
+        String data = "3\n" +
+                "([A-Z])(.+)\n" +
+                "[AZ[a-z](a-z)\n" +
+                "batcatpat(nat";
+        String expected = "Valid\n" +
+                "Invalid\n" +
+                "Invalid\n";
+        runTest(data, PatternSyntaxChecker.class.getName());
+        Assert.assertEquals(expected, byteArrayOutputStream.toString());
+    }
+
+
+
 
     private void runTest(final String data, final String className) throws Exception {
 
