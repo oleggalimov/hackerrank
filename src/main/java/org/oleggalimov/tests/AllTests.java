@@ -2,7 +2,9 @@ package main.java.org.oleggalimov.tests;
 
 
 import main.java.org.oleggalimov.tasks.JavaCurrencyFormatter;
+import main.java.org.oleggalimov.tasks.JavaStringsIntroduction;
 import main.java.org.oleggalimov.tasks.PatternSyntaxChecker;
+import main.java.org.oleggalimov.tasks.Result;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -49,6 +51,22 @@ public class AllTests {
                 "Invalid\n";
         runTest(data, PatternSyntaxChecker.class.getName());
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
+    }
+    @Test
+    public void JavaStringsIntroduction() throws Exception {
+        String data = "vuu\n" +
+                "vuuuuu";
+        String expected = "9\n" +
+                "No\n" +
+                "Vuu Vuuuuu";
+        runTest(data, JavaStringsIntroduction.class.getName());
+        Assert.assertEquals(expected, byteArrayOutputStream.toString());
+    }
+    @Test
+    //Java Date and Time
+    public void Java_Date_and_Time() {
+        String res = Result.findDay(8,5,2015);
+        Assert.assertEquals("WEDNESDAY", res);
     }
 
 
