@@ -77,6 +77,22 @@ public class AllTests {
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
     }
     @Test
+    public void JavaStringReverse() throws Exception {
+        String data = "madam";
+        String expected = "Yes\n";
+        runTest(data, JavaStringReverse.class.getName());
+        Assert.assertEquals(expected, byteArrayOutputStream.toString());
+    }
+    @Test
+    public void JavaAnagrams() throws Exception {
+        String data =
+                "abcde\n\n" +
+                "xyzwf";
+        String expected = "Not Anagrams\n";
+        runTest(data, JavaAnagrams.class.getName());
+        Assert.assertEquals(expected, byteArrayOutputStream.toString());
+    }
+    @Test
     //Java Date and Time
     public void Java_Date_and_Time() {
         String res = Result.findDay(8,5,2015);
