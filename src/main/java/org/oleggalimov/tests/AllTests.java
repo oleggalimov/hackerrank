@@ -1,10 +1,7 @@
 package main.java.org.oleggalimov.tests;
 
 
-import main.java.org.oleggalimov.tasks.JavaCurrencyFormatter;
-import main.java.org.oleggalimov.tasks.JavaStringsIntroduction;
-import main.java.org.oleggalimov.tasks.PatternSyntaxChecker;
-import main.java.org.oleggalimov.tasks.Result;
+import main.java.org.oleggalimov.tasks.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -60,6 +57,23 @@ public class AllTests {
                 "No\n" +
                 "Vuu Vuuuuu";
         runTest(data, JavaStringsIntroduction.class.getName());
+        Assert.assertEquals(expected, byteArrayOutputStream.toString());
+    }
+    @Test
+    public void JavaSubstring() throws Exception {
+        String data = "Helloworld\n" +
+                "3 7\n";
+        String expected = "lowo\n";
+        runTest(data, JavaSubstring.class.getName());
+        Assert.assertEquals(expected, byteArrayOutputStream.toString());
+    }
+    @Test
+    public void JavaSubstringComparisons() throws Exception {
+        String data = "fsdfsDLJFSJGIHEKHIPEINNNFIGHKkjgksfgjrotyotoyjtkjkLJOIOEHEKHKKDJGKFGJkfjhglfhjtrhkjfkhjnfglhkjflgjhtrljhfljhfgljhfgljhfgljhtrklyjhtrkjhfgkljhfgjhfljhtrljlfjhfgljhfglkjhflyjtljtrlyjhtryjtrtykhrktherktjhtrkyjhkujhtykhtryhrthHKLJHLHRLHTLRHLKHTRLKHLHRLHLKHLKHKLHLKHLHKLHKHJKHKJHKJHJKHKHJKHKHHLHLHLHKHKJHKJKKHKHKHKHKHHKHKHKHKHkhktryhtlhtklhtrkyhtrkyhtrkjyhtrkyhrekthtrkyhtrkhtrkyhtrkhtrkyhtrkhtrkyhtrkhtrkyhtrkhtrkyhtrkhtrkyhtrkhtrkyhtrkrtkyhtrklyhjrOEOHKDHFksdhfklHLHKHLHKKJHJHKGKLHLHJLJHLHLHLHLHHLHLHLHH\n" +
+                "100";
+        String expected = "DJGKFGJkfjhglfhjtrhkjfkhjnfglhkjflgjhtrljhfljhfgljhfgljhfgljhtrklyjhtrkjhfgkljhfgjhfljhtrljlfjhfgljh\n" +
+                "yotoyjtkjkLJOIOEHEKHKKDJGKFGJkfjhglfhjtrhkjfkhjnfglhkjflgjhtrljhfljhfgljhfgljhfgljhtrklyjhtrkjhfgklj\n";
+        runTest(data, JavaSubstringComparisons.class.getName());
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
     }
     @Test
