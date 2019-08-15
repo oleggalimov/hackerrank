@@ -1,4 +1,4 @@
-//package main.java.org.oleggalimov.tests;
+//package main.java.org.oleggalimov.test;
 //
 //import org.junit.Test;
 //import main.java.org.oleggalimov.tasks.DiskSpace;

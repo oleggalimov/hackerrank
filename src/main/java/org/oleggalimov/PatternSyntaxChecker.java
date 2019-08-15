@@ -1,4 +1,4 @@
-package main.java.org.oleggalimov.tasks;
+package org.oleggalimov;
 
 import java.util.Scanner;
 import java.util.regex.Pattern;

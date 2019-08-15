@@ -1,4 +1,4 @@
-//package main.java.org.oleggalimov.tests;
+//package main.java.org.oleggalimov.test;
 //
 //import org.junit.Rule;
 //import org.junit.Test;

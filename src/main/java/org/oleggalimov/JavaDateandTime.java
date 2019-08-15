@@ -1,4 +1,4 @@
-//package main.java.org.oleggalimov.tasks;
+//package org.oleggalimov;
 //
 //import java.util.*;
 //import java.util.stream.Collectors;

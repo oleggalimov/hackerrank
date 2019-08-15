@@ -1,18 +1,17 @@
-package main.java.org.oleggalimov.tests;
-
-
-import main.java.org.oleggalimov.tasks.*;
+import org.oleggalimov.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.oleggalimov.PatternSyntaxChecker;
 
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.PrintStream;
+import java.io.*;
 import java.lang.reflect.Method;
+import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class AllTests {
     private ByteArrayOutputStream byteArrayOutputStream;
@@ -76,22 +75,37 @@ public class AllTests {
         runTest(data, JavaSubstringComparisons.class.getName());
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
     }
+    String javaStringTokensExpected;
+    String javaStringTokensInput;
+    @Before
+    public void readJavaStringTokensFiles() throws URISyntaxException, IOException {
+        Path path;
+        byte[] bytes;
+
+        path = Paths.get(getClass().getClassLoader().getResource("JavaStringTokens_EXPECTED").toURI());
+        bytes = Files.readAllBytes(path);
+        javaStringTokensExpected = new String(bytes);
+
+        path = Paths.get(getClass().getClassLoader().getResource("JavaStringTokens_INPUT").toURI());
+        bytes = Files.readAllBytes(path);
+        javaStringTokensInput = new String(bytes);
+
+    }
     @Test
-    public void JavaStringReverse() throws Exception {
-        String data = "madam";
-        String expected = "Yes\n";
-        runTest(data, JavaStringReverse.class.getName());
+    public void JavaStringTokens() throws Exception {
+        String input = javaStringTokensInput;
+        String expected = javaStringTokensExpected;
+        runTest(input, JavaStringTokens.class.getName());
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
     }
     @Test
-    public void JavaAnagrams() throws Exception {
-        String data =
-                "abcde\n\n" +
-                "xyzwf";
-        String expected = "Not Anagrams\n";
-        runTest(data, JavaAnagrams.class.getName());
+    public void JavaStringTokens_withEmptyInput() throws Exception {
+        String input = "";
+        String expected = "0\n";
+        runTest(input, JavaStringTokens.class.getName());
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
     }
+
     @Test
     //Java Date and Time
     public void Java_Date_and_Time() {
