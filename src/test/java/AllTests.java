@@ -107,6 +107,36 @@ public class AllTests {
     }
 
     @Test
+    public void JavaRegex() throws Exception {
+        String input = "12.12.12.12\n" +
+                "13.13.13.112\n" +
+                "VUUT.12.12\n" +
+                "111.111.11.111\n" +
+                "1.1.1.1.1.1.1\n" +
+                ".....\n" +
+                "1...1..1..1\n" +
+                "0.0.0.0\n" +
+                "255.0.255.0\n" +
+                "266.266.266.266\n" +
+                "00000.000000.0000000.00001\n" +
+                "0023.0012.0012.0034";
+        String expected = "true\n" +
+                "true\n" +
+                "false\n" +
+                "true\n" +
+                "false\n" +
+                "false\n" +
+                "false\n" +
+                "true\n" +
+                "true\n" +
+                "false\n" +
+                "false\n" +
+                "false\n";
+        runTest(input, JavaRegex.class.getName());
+        Assert.assertEquals(expected, byteArrayOutputStream.toString());
+    }
+
+    @Test
     //Java Date and Time
     public void Java_Date_and_Time() {
         String res = Result.findDay(8,5,2015);
