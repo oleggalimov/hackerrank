@@ -7,9 +7,8 @@ import java.util.regex.Pattern;
 public class JavaRegex2DuplicateWords {
 
     public static void main(String[] args) {
-
         String regex = "\\b(\\w+)(?:\\W+\\1\\b)+";
-        /**
+        /*
          * \b assert position at a word boundary: (^\w|\w$|\W\w|\w\W)
          * 1st Capturing Group (\w+)
          * \w+ matches any word character (equal to [a-zA-Z0-9_])
@@ -22,7 +21,7 @@ public class JavaRegex2DuplicateWords {
          * \b assert position at a word boundary: (^\w|\w$|\W\w|\w\W)
          */
 
-        /**
+        /*
          * I used this regular expression: "\b(\w+)(?:\W+\1\b)+"
          *
          * When using this regular expression in Java, we have to "escape" the backslash characters with additional backslashes (as done in the code above).
