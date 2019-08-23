@@ -151,6 +151,52 @@ public class AllTests {
         runTest(input, JavaRegex2DuplicateWords.class.getName());
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
     }
+    String ValidUsernameRegularExpression_EXPECTED;
+    String ValidUsernameRegularExpression_INPUT;
+    @Before
+    public void readValidUsernameRegularExpressionFiles() throws URISyntaxException, IOException {
+        Path path;
+        byte[] bytes;
+
+        path = Paths.get(getClass().getClassLoader().getResource("ValidUserNameRegularExpression_EXPECTED").toURI());
+        bytes = Files.readAllBytes(path);
+        ValidUsernameRegularExpression_EXPECTED = new String(bytes);
+
+        path = Paths.get(getClass().getClassLoader().getResource("ValidUserNameRegularExpression_INPUT").toURI());
+        bytes = Files.readAllBytes(path);
+        ValidUsernameRegularExpression_INPUT = new String(bytes);
+
+    }
+    @Test
+    public void ValidUsernameRegularExpression_100Rows() throws Exception {
+        String input = ValidUsernameRegularExpression_INPUT;
+        String expected = ValidUsernameRegularExpression_EXPECTED;
+        runTest(input, ValidUsernameRegularExpression.class.getName());
+        Assert.assertEquals(expected, byteArrayOutputStream.toString());
+    }
+
+    @Test
+    public void ValidUsernameRegularExpression() throws Exception {
+        String input = "8\n" +
+                "Julia\n" +
+                "Samantha\n" +
+                "Samantha_21\n" +
+                "1Samantha\n" +
+                "Samantha?10_2A\n" +
+                "JuliaZ007\n" +
+                "Julia@007\n" +
+                "_Julia007\n";
+        String expected = "Invalid\r\n" +
+                "Valid\r\n" +
+                "Valid\r\n" +
+                "Invalid\r\n" +
+                "Invalid\r\n" +
+                "Valid\r\n" +
+                "Invalid\r\n" +
+                "Invalid\r\n";
+        runTest(input, ValidUsernameRegularExpression.class.getName());
+        Assert.assertEquals(expected, byteArrayOutputStream.toString());
+    }
 
     @Test
     //Java Date and Time
@@ -178,5 +224,4 @@ public class AllTests {
             System.setIn(old);
         }
     }
-
 }
