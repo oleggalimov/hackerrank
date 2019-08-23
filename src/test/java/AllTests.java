@@ -81,7 +81,6 @@ public class AllTests {
     public void readJavaStringTokensFiles() throws URISyntaxException, IOException {
         Path path;
         byte[] bytes;
-
         path = Paths.get(getClass().getClassLoader().getResource("JavaStringTokens_EXPECTED").toURI());
         bytes = Files.readAllBytes(path);
         javaStringTokensExpected = new String(bytes);
