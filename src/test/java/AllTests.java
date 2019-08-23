@@ -28,47 +28,47 @@ public class AllTests {
         double data = 12324.134D;
         runTest(String.valueOf(data), JavaCurrencyFormatter.class.getName());
         Assert.assertEquals(
-                "US: $12,324.13\n" +
-                "India: Rs.12,324.13\n" +
-                "China: ￥12,324.13\n" +
-                "France: 12 324,13 €\n",
+                "US: $12,324.13\r\n" +
+                "India: Rs.12,324.13\r\n" +
+                "China: ￥12,324.13\r\n" +
+                "France: 12 324,13 €\r\n",
 
                 byteArrayOutputStream.toString()
         );
     }
     @Test
     public void PatternSyntaxChecker() throws Exception {
-        String data = "3\n" +
-                "([A-Z])(.+)\n" +
-                "[AZ[a-z](a-z)\n" +
+        String data = "3\r\n" +
+                "([A-Z])(.+)\r\n" +
+                "[AZ[a-z](a-z)\r\n" +
                 "batcatpat(nat";
-        String expected = "Valid\n" +
-                "Invalid\n" +
-                "Invalid\n";
+        String expected = "Valid\r\n" +
+                "Invalid\r\n" +
+                "Invalid\r\n";
         runTest(data, PatternSyntaxChecker.class.getName());
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
     }
     @Test
     public void JavaStringsIntroduction() throws Exception {
-        String data = "vuu\n" +
+        String data = "vuu\r\n" +
                 "vuuuuu";
-        String expected = "9\n" +
-                "No\n" +
-                "Vuu Vuuuuu";
+        String expected = "9\r\n" +
+                "No\r\n" +
+                "Vuu Vuuuuu\r\n";
         runTest(data, JavaStringsIntroduction.class.getName());
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
     }
     @Test
     public void JavaSubstring() throws Exception {
-        String data = "Helloworld\n" +
-                "3 7\n";
-        String expected = "lowo\n";
+        String data = "Helloworld\r\n" +
+                "3 7\r\n";
+        String expected = "lowo\r\n";
         runTest(data, JavaSubstring.class.getName());
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
     }
     @Test
     public void JavaSubstringComparisons() throws Exception {
-        String data = "fsdfsDLJFSJGIHEKHIPEINNNFIGHKkjgksfgjrotyotoyjtkjkLJOIOEHEKHKKDJGKFGJkfjhglfhjtrhkjfkhjnfglhkjflgjhtrljhfljhfgljhfgljhfgljhtrklyjhtrkjhfgkljhfgjhfljhtrljlfjhfgljhfglkjhflyjtljtrlyjhtryjtrtykhrktherktjhtrkyjhkujhtykhtryhrthHKLJHLHRLHTLRHLKHTRLKHLHRLHLKHLKHKLHLKHLHKLHKHJKHKJHKJHJKHKHJKHKHHLHLHLHKHKJHKJKKHKHKHKHKHHKHKHKHKHkhktryhtlhtklhtrkyhtrkyhtrkjyhtrkyhrekthtrkyhtrkhtrkyhtrkhtrkyhtrkhtrkyhtrkhtrkyhtrkhtrkyhtrkhtrkyhtrkhtrkyhtrkrtkyhtrklyhjrOEOHKDHFksdhfklHLHKHLHKKJHJHKGKLHLHJLJHLHLHLHLHHLHLHLHH\n" +
+        String data = "fsdfsDLJFSJGIHEKHIPEINNNFIGHKkjgksfgjrotyotoyjtkjkLJOIOEHEKHKKDJGKFGJkfjhglfhjtrhkjfkhjnfglhkjflgjhtrljhfljhfgljhfgljhfgljhtrklyjhtrkjhfgkljhfgjhfljhtrljlfjhfgljhfglkjhflyjtljtrlyjhtryjtrtykhrktherktjhtrkyjhkujhtykhtryhrthHKLJHLHRLHTLRHLKHTRLKHLHRLHLKHLKHKLHLKHLHKLHKHJKHKJHKJHJKHKHJKHKHHLHLHLHKHKJHKJKKHKHKHKHKHHKHKHKHKHkhktryhtlhtklhtrkyhtrkyhtrkjyhtrkyhrekthtrkyhtrkhtrkyhtrkhtrkyhtrkhtrkyhtrkhtrkyhtrkhtrkyhtrkhtrkyhtrkhtrkyhtrkrtkyhtrklyhjrOEOHKDHFksdhfklHLHKHLHKKJHJHKGKLHLHJLJHLHLHLHLHHLHLHLHH\r\n" +
                 "100";
         String expected = "DJGKFGJkfjhglfhjtrhkjfkhjnfglhkjflgjhtrljhfljhfgljhfgljhfgljhtrklyjhtrkjhfgkljhfgjhfljhtrljlfjhfgljh\n" +
                 "yotoyjtkjkLJOIOEHEKHKKDJGKFGJkfjhglfhjtrhkjfkhjnfglhkjflgjhtrljhfljhfgljhfgljhfgljhtrklyjhtrkjhfgklj\n";
@@ -100,39 +100,55 @@ public class AllTests {
     }
     @Test
     public void JavaStringTokens_withEmptyInput() throws Exception {
-        String input = "";
-        String expected = "0\n";
+        String input = " ";
+        String expected = "0\r\n";
         runTest(input, JavaStringTokens.class.getName());
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
     }
 
     @Test
     public void JavaRegex() throws Exception {
-        String input = "12.12.12.12\n" +
-                "13.13.13.112\n" +
-                "VUUT.12.12\n" +
-                "111.111.11.111\n" +
-                "1.1.1.1.1.1.1\n" +
-                ".....\n" +
-                "1...1..1..1\n" +
-                "0.0.0.0\n" +
-                "255.0.255.0\n" +
-                "266.266.266.266\n" +
-                "00000.000000.0000000.00001\n" +
+        String input = "12.12.12.12\r\n" +
+                "13.13.13.112\r\n" +
+                "VUUT.12.12\r\n" +
+                "111.111.11.111\r\n" +
+                "1.1.1.1.1.1.1\r\n" +
+                ".....\r\n" +
+                "1...1..1..1\r\n" +
+                "0.0.0.0\r\n" +
+                "255.0.255.0\r\n" +
+                "266.266.266.266\r\n" +
+                "00000.000000.0000000.00001\r\n" +
                 "0023.0012.0012.0034";
-        String expected = "true\n" +
-                "true\n" +
-                "false\n" +
-                "true\n" +
-                "false\n" +
-                "false\n" +
-                "false\n" +
-                "true\n" +
-                "true\n" +
-                "false\n" +
-                "false\n" +
-                "false\n";
+        String expected = "true\r\n" +
+                "true\r\n" +
+                "false\r\n" +
+                "true\r\n" +
+                "false\r\n" +
+                "false\r\n" +
+                "false\r\n" +
+                "true\r\n" +
+                "true\r\n" +
+                "false\r\n" +
+                "false\r\n" +
+                "false\r\n";
         runTest(input, JavaRegex.class.getName());
+        Assert.assertEquals(expected, byteArrayOutputStream.toString());
+    }
+    @Test
+    public void JavaRegex2DuplicateWords() throws Exception {
+        String input = "5\r\n" +
+                "Goodbye bye bye world world world\r\n" +
+                "Sam went went to to to his business\r\n" +
+                "Reya is is the the best player in eye eye game\r\n" +
+                "in inthe\r\n" +
+                "Hello hello Ab aB";
+        String expected = "Goodbye bye world\r\n" +
+                "Sam went to his business\r\n" +
+                "Reya is the best player in eye game\r\n" +
+                "in inthe\r\n" +
+                "Hello Ab\r\n";
+        runTest(input, JavaRegex2DuplicateWords.class.getName());
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
     }
 
@@ -142,9 +158,6 @@ public class AllTests {
         String res = Result.findDay(8,5,2015);
         Assert.assertEquals("WEDNESDAY", res);
     }
-
-
-
 
     private void runTest(final String data, final String className) throws Exception {
 
