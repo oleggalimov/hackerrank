@@ -198,6 +198,22 @@ public class AllTests {
     }
 
     @Test
+    public void TagContentExtractor() throws Exception {
+        String input = "4\r\n" +
+                "<h1>Nayeem loves counseling</h1>\r\n" +
+                "<h1><h1>Sanjay has no watch</h1></h1><par>So wait for a while</par>\r\n" +
+                "<Amee>safat codes like a ninja</amee>\r\n" +
+                "<SA premium>Imtiaz has a secret crush</SA premium>\r\n";
+        String expected = "Nayeem loves counseling\r\n" +
+                "Sanjay has no watch\r\n" +
+                "So wait for a while\r\n" +
+                "None\r\n" +
+                "Imtiaz has a secret crush\r\n";
+        runTest(input, TagContentExtractor.class.getName());
+        Assert.assertEquals(expected, byteArrayOutputStream.toString());
+    }
+
+    @Test
     //Java Date and Time
     public void Java_Date_and_Time() {
         String res = Result.findDay(8,5,2015);
