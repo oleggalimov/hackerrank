@@ -220,6 +220,39 @@ public class AllTests {
         Assert.assertEquals("WEDNESDAY", res);
     }
 
+    @Test
+    public void JavaIterator() throws Exception {
+        String input = "2 2\r\n" +
+                "42\r\n" +
+                "10\r\n" +
+                "hello\r\n" +
+                "java\r\n";
+        String expected = "hello\r\n" +
+                "java\r\n";
+        runTest(input, JavaIterator.class.getName());
+        Assert.assertEquals(expected, byteArrayOutputStream.toString());
+    }
+    @Test
+    public void JavaSort() throws Exception {
+        String input = "5\r\n" +
+                "33 Rumpa 3,68\r\n" +
+                "85 Ashis 3,85\r\n" +
+                "56 Samiha 3,75\r\n" +
+                "19 Samara 3,75\r\n" +
+                "22 Fahim 3,76\r\n";
+        String expected = "Ashis\r\n" +
+                "Fahim\r\n" +
+                "Samara\r\n" +
+                "Samiha\r\n" +
+                "Rumpa\r\n";
+        runTest(input, "org.oleggalimov."+new Object() {}
+                .getClass()
+                .getEnclosingMethod()
+                .getName());
+        Assert.assertEquals(expected, byteArrayOutputStream.toString());
+    }
+
+
     private void runTest(final String data, final String className) throws Exception {
 
         final InputStream input = new ByteArrayInputStream(data.getBytes(StandardCharsets.UTF_8));
