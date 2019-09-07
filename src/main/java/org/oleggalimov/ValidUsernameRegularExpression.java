@@ -3,9 +3,9 @@ package org.oleggalimov;
 import java.util.Scanner;
 
 public class ValidUsernameRegularExpression {
-    private static final Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
+        final Scanner scan = new Scanner(System.in);
         int n = Integer.parseInt(scan.nextLine());
         while (n-- != 0) {
             String userName = scan.nextLine();

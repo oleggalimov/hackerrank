@@ -1,9 +1,7 @@
-import org.oleggalimov.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.oleggalimov.PatternSyntaxChecker;
-
+import org.oleggalimov.*;
 
 import java.io.*;
 import java.lang.reflect.Method;
@@ -29,13 +27,14 @@ public class AllTests {
         runTest(String.valueOf(data), JavaCurrencyFormatter.class.getName());
         Assert.assertEquals(
                 "US: $12,324.13\r\n" +
-                "India: Rs.12,324.13\r\n" +
-                "China: ￥12,324.13\r\n" +
-                "France: 12 324,13 €\r\n",
+                        "India: Rs.12,324.13\r\n" +
+                        "China: ￥12,324.13\r\n" +
+                        "France: 12 324,13 €\r\n",
 
                 byteArrayOutputStream.toString()
         );
     }
+
     @Test
     public void PatternSyntaxChecker() throws Exception {
         String data = "3\r\n" +
@@ -48,6 +47,7 @@ public class AllTests {
         runTest(data, PatternSyntaxChecker.class.getName());
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
     }
+
     @Test
     public void JavaStringsIntroduction() throws Exception {
         String data = "vuu\r\n" +
@@ -58,6 +58,7 @@ public class AllTests {
         runTest(data, JavaStringsIntroduction.class.getName());
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
     }
+
     @Test
     public void JavaSubstring() throws Exception {
         String data = "Helloworld\r\n" +
@@ -66,6 +67,7 @@ public class AllTests {
         runTest(data, JavaSubstring.class.getName());
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
     }
+
     @Test
     public void JavaSubstringComparisons() throws Exception {
         String data = "fsdfsDLJFSJGIHEKHIPEINNNFIGHKkjgksfgjrotyotoyjtkjkLJOIOEHEKHKKDJGKFGJkfjhglfhjtrhkjfkhjnfglhkjflgjhtrljhfljhfgljhfgljhfgljhtrklyjhtrkjhfgkljhfgjhfljhtrljlfjhfgljhfglkjhflyjtljtrlyjhtryjtrtykhrktherktjhtrkyjhkujhtykhtryhrthHKLJHLHRLHTLRHLKHTRLKHLHRLHLKHLKHKLHLKHLHKLHKHJKHKJHKJHJKHKHJKHKHHLHLHLHKHKJHKJKKHKHKHKHKHHKHKHKHKHkhktryhtlhtklhtrkyhtrkyhtrkjyhtrkyhrekthtrkyhtrkhtrkyhtrkhtrkyhtrkhtrkyhtrkhtrkyhtrkhtrkyhtrkhtrkyhtrkhtrkyhtrkrtkyhtrklyhjrOEOHKDHFksdhfklHLHKHLHKKJHJHKGKLHLHJLJHLHLHLHLHHLHLHLHH\r\n" +
@@ -75,28 +77,24 @@ public class AllTests {
         runTest(data, JavaSubstringComparisons.class.getName());
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
     }
+
     String javaStringTokensExpected;
     String javaStringTokensInput;
+
     @Before
     public void readJavaStringTokensFiles() throws URISyntaxException, IOException {
-        Path path;
-        byte[] bytes;
-        path = Paths.get(getClass().getClassLoader().getResource("JavaStringTokens_EXPECTED").toURI());
-        bytes = Files.readAllBytes(path);
-        javaStringTokensExpected = new String(bytes);
-
-        path = Paths.get(getClass().getClassLoader().getResource("JavaStringTokens_INPUT").toURI());
-        bytes = Files.readAllBytes(path);
-        javaStringTokensInput = new String(bytes);
+        String[] strings = readFile("JavaStringTokens_INPUT", "JavaStringTokens_EXPECTED");
+        javaStringTokensInput = strings[0];
+        javaStringTokensExpected = strings[1];
 
     }
+
     @Test
     public void JavaStringTokens() throws Exception {
-        String input = javaStringTokensInput;
-        String expected = javaStringTokensExpected;
-        runTest(input, JavaStringTokens.class.getName());
-        Assert.assertEquals(expected, byteArrayOutputStream.toString());
+        runTest(javaStringTokensInput, JavaStringTokens.class.getName());
+        Assert.assertEquals(javaStringTokensExpected, byteArrayOutputStream.toString());
     }
+
     @Test
     public void JavaStringTokens_withEmptyInput() throws Exception {
         String input = " ";
@@ -134,6 +132,7 @@ public class AllTests {
         runTest(input, JavaRegex.class.getName());
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
     }
+
     @Test
     public void JavaRegex2DuplicateWords() throws Exception {
         String input = "5\r\n" +
@@ -150,28 +149,22 @@ public class AllTests {
         runTest(input, JavaRegex2DuplicateWords.class.getName());
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
     }
+
     String ValidUsernameRegularExpression_EXPECTED;
     String ValidUsernameRegularExpression_INPUT;
+
     @Before
     public void readValidUsernameRegularExpressionFiles() throws URISyntaxException, IOException {
-        Path path;
-        byte[] bytes;
-
-        path = Paths.get(getClass().getClassLoader().getResource("ValidUserNameRegularExpression_EXPECTED").toURI());
-        bytes = Files.readAllBytes(path);
-        ValidUsernameRegularExpression_EXPECTED = new String(bytes);
-
-        path = Paths.get(getClass().getClassLoader().getResource("ValidUserNameRegularExpression_INPUT").toURI());
-        bytes = Files.readAllBytes(path);
-        ValidUsernameRegularExpression_INPUT = new String(bytes);
+        String[] strings = readFile("ValidUserNameRegularExpression_INPUT", "ValidUserNameRegularExpression_EXPECTED");
+        ValidUsernameRegularExpression_INPUT = strings[0];
+        ValidUsernameRegularExpression_EXPECTED = strings[1];
 
     }
+
     @Test
     public void ValidUsernameRegularExpression_100Rows() throws Exception {
-        String input = ValidUsernameRegularExpression_INPUT;
-        String expected = ValidUsernameRegularExpression_EXPECTED;
-        runTest(input, ValidUsernameRegularExpression.class.getName());
-        Assert.assertEquals(expected, byteArrayOutputStream.toString());
+        runTest(ValidUsernameRegularExpression_INPUT, ValidUsernameRegularExpression.class.getName());
+        Assert.assertEquals(ValidUsernameRegularExpression_EXPECTED, byteArrayOutputStream.toString());
     }
 
     @Test
@@ -216,7 +209,7 @@ public class AllTests {
     @Test
     //Java Date and Time
     public void Java_Date_and_Time() {
-        String res = Result.findDay(8,5,2015);
+        String res = Result.findDay(8, 5, 2015);
         Assert.assertEquals("WEDNESDAY", res);
     }
 
@@ -232,6 +225,7 @@ public class AllTests {
         runTest(input, JavaIterator.class.getName());
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
     }
+
     @Test
     public void JavaSort() throws Exception {
         String input = "5\r\n" +
@@ -245,11 +239,31 @@ public class AllTests {
                 "Samara\r\n" +
                 "Samiha\r\n" +
                 "Rumpa\r\n";
-        runTest(input, "org.oleggalimov."+new Object() {}
+        runTest(input, "org.oleggalimov." + new Object() {
+        }
                 .getClass()
                 .getEnclosingMethod()
                 .getName());
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
+    }
+
+    private String JavaDequeue_INPUT;
+    private String JavaDequeue_EXPECTED = "94055\r\n";
+
+    @Before
+    public void beforeJavaDequeue() throws IOException, URISyntaxException {
+        String[] strings = readFile("JavaDequeue_INPUT", null);
+        JavaDequeue_INPUT = strings[0];
+    }
+
+    @Test(timeout = 3000)
+    public void JavaDequeue() throws Exception {
+        runTest(JavaDequeue_INPUT, "org.oleggalimov." + new Object() {
+        }
+                .getClass()
+                .getEnclosingMethod()
+                .getName());
+        Assert.assertEquals(JavaDequeue_EXPECTED, byteArrayOutputStream.toString());
     }
 
 
@@ -271,5 +285,23 @@ public class AllTests {
             System.setOut(console);
             System.setIn(old);
         }
+    }
+
+    private String[] readFile(String fileNameInput, String fileNameExpected) throws URISyntaxException, IOException {
+        Path path;
+        byte[] bytes;
+        String[] result = new String[2];
+        ClassLoader classLoader = getClass().getClassLoader();
+        if (fileNameInput != null) {
+            path = Paths.get(classLoader.getResource(fileNameInput).toURI());
+            bytes = Files.readAllBytes(path);
+            result[0] = new String(bytes);
+        }
+        if (fileNameExpected != null) {
+            path = Paths.get(classLoader.getResource(fileNameExpected).toURI());
+            bytes = Files.readAllBytes(path);
+            result[1] = new String(bytes);
+        }
+        return result;
     }
 }
