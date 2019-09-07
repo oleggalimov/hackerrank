@@ -5,39 +5,26 @@ import java.util.*;
 public class JavaDequeue {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        Deque <Integer>deque = new ArrayDeque<>();
+        Deque<Integer> deque = new ArrayDeque<>();
+        HashSet<Integer> set = new HashSet<>();
+
         int n = in.nextInt();
         int m = in.nextInt();
-        int max, counter;
-        List <Integer> maxValues= new ArrayList<>();
-        Set <Integer> temp = new HashSet<>();
+        int max = Integer.MIN_VALUE;
+
         for (int i = 0; i < n; i++) {
-            Integer num = in.nextInt();
-            deque.add(num);
-            temp.add(num);
-            if (temp.size()==m) {
-                maxValues.add(temp.size());
-                temp.clear();
+            int input = in.nextInt();
+
+            deque.add(input);
+            set.add(input);
+
+            if (deque.size() == m) {
+                if (set.size() > max) max = set.size();
+                int first = deque.remove();
+                if (!deque.contains(first)) set.remove(first);
             }
         }
-        Iterator<Integer> iterator;
-        temp.clear();
-        do {
-            counter=0;
-            deque.removeFirst();
-            iterator = deque.iterator();
-            while (iterator.hasNext()) {
-                if (counter==m) {
-                    maxValues.add(temp.size());
-                    temp.clear();
-                    break;
-                } else {
-                    temp.add(iterator.next());
-                    counter++;
-                }
 
-            }
-        } while (deque.size()>m);
-        System.out.println(Collections.max(maxValues));
+        System.out.println(max);
     }
 }
