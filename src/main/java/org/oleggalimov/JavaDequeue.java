@@ -37,7 +37,7 @@ public class JavaDequeue {
                 }
 
             }
-        } while (deque.size()>m);
+        } while (deque.size()>=m);
         System.out.println(Collections.max(maxValues));
     }
 }
