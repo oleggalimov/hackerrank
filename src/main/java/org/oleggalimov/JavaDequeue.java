@@ -14,17 +14,14 @@ public class JavaDequeue {
 
         for (int i = 0; i < n; i++) {
             int input = in.nextInt();
-
             deque.add(input);
             set.add(input);
-
             if (deque.size() == m) {
                 if (set.size() > max) max = set.size();
                 int first = deque.remove();
                 if (!deque.contains(first)) set.remove(first);
             }
         }
-
         System.out.println(max);
     }
 }
