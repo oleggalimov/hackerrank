@@ -265,6 +265,31 @@ public class AllTests {
                 .getName());
         Assert.assertEquals(JavaDequeue_EXPECTED, byteArrayOutputStream.toString());
     }
+    @Test
+    public void JavaBigDecimal() throws Exception {
+        String input = "9\r\n" +
+                "-100\r\n" +
+                "50\r\n" +
+                "0\r\n" +
+                "56.6\r\n" +
+                "90\r\n" +
+                "0.12\r\n" +
+                ".12\r\n" +
+                "02.34\r\n" +
+                "000.000\n";
+        String expected = "90\r\n" +
+                "56.6\r\n" +
+                "50\r\n" +
+                "02.34\r\n" +
+                "0.12\r\n" +
+                ".12\r\n" +
+                "0\r\n" +
+                "000.000\r\n" +
+                "-100\r\n";
+        runTest(input, "org.oleggalimov." + new Object() {
+        }.getClass().getEnclosingMethod().getName());
+        Assert.assertEquals(expected, byteArrayOutputStream.toString());
+    }
 
 
     private void runTest(final String data, final String className) throws Exception {

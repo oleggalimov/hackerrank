@@ -21,6 +21,7 @@ public class JavaDequeue {
                 int first = deque.remove();
                 if (!deque.contains(first)) set.remove(first);
             }
+
         }
         System.out.println(max);
     }
