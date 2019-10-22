@@ -291,6 +291,26 @@ public class AllTests {
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
     }
 
+    @Test
+    public void JavaBigInteger() throws Exception {
+        String input = "1234\r\n" +
+                "20\r\n";
+        String expected = "1254\r\n" +
+                "24680\r\n";
+        runTest(input, "org.oleggalimov." + new Object() {
+        }.getClass().getEnclosingMethod().getName());
+        Assert.assertEquals(expected, byteArrayOutputStream.toString());
+    }
+
+    @Test
+    public void JavaPrimalityTest() throws Exception {
+        String input = "13\r\n";
+        String expected = "prime\r\n";
+        runTest(input, "org.oleggalimov." + new Object() {
+        }.getClass().getEnclosingMethod().getName());
+        Assert.assertEquals(expected, byteArrayOutputStream.toString());
+    }
+
 
     private void runTest(final String data, final String className) throws Exception {
 
