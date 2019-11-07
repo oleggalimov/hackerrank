@@ -301,6 +301,15 @@ public class AllTests {
         }.getClass().getEnclosingMethod().getName());
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
     }
+
+    @Test
+    public void JavaPrimalityTest() throws Exception {
+        String input = "13\r\n";
+        String expected = "prime\r\n";
+        runTest(input, "org.oleggalimov." + new Object() {
+        }.getClass().getEnclosingMethod().getName());
+        Assert.assertEquals(expected, byteArrayOutputStream.toString());
+    }
     @Test
     public void Java1DArray() throws Exception {
         String input = "5\r\n" +
@@ -318,11 +327,15 @@ public class AllTests {
         }.getClass().getEnclosingMethod().getName());
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
     }
-
     @Test
-    public void JavaPrimalityTest() throws Exception {
-        String input = "13\r\n";
-        String expected = "prime\r\n";
+    public void Java2DArray() throws Exception {
+        String input = "1 1 1 0 0 0\r\n" +
+                "0 1 0 0 0 0\r\n" +
+                "1 1 1 0 0 0\r\n" +
+                "0 0 2 4 4 0\r\n" +
+                "0 0 0 2 0 0\r\n" +
+                "0 0 1 2 4 0\r\n";
+        String expected = "19\r\n" ;
         runTest(input, "org.oleggalimov." + new Object() {
         }.getClass().getEnclosingMethod().getName());
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
