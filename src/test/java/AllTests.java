@@ -341,6 +341,42 @@ public class AllTests {
         Assert.assertEquals(expected, byteArrayOutputStream.toString());
     }
 
+    @Test
+    public void JavaArraylist() throws Exception {
+        String input = "8\r\n" +
+                "7 43 35 26 34 78 99 70\r\n" +
+                "3 71 11 16\r\n" +
+                "8 70 19 42 30 84 20 57 45\r\n" +
+                "0\r\n" +
+                "1 20\r\n" +
+                "0\r\n" +
+                "0\r\n" +
+                "0\r\n" +
+                "10\r\n" +
+                "5 1\r\n" +
+                "5 7\r\n" +
+                "1 7\r\n" +
+                "5 3\r\n" +
+                "5 2\r\n" +
+                "4 7\r\n" +
+                "5 2\r\n" +
+                "1 2\r\n" +
+                "4 1\r\n" +
+                "2 3";
+        String expected = "20\r\n" +
+                "ERROR!\r\n" +
+                "70\r\n" +
+                "ERROR!\r\n" +
+                "ERROR!\r\n" +
+                "ERROR!\r\n" +
+                "ERROR!\r\n" +
+                "35\r\n" +
+                "ERROR!\r\n" +
+                "16\r\n" ;
+        runTest(input, "org.oleggalimov." + new Object() {}.getClass().getEnclosingMethod().getName());
+        Assert.assertEquals(expected, byteArrayOutputStream.toString());
+    }
+
 
     private void runTest(final String data, final String className) throws Exception {
 
